@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="ko">
+<meta charset="utf-8">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans+KR:wght@400;600;700&family=Space+Grotesk:wght@700&display=swap">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1200px; height: 630px; overflow: hidden; }
+  body {
+    font-family: "IBM Plex Sans KR", "Malgun Gothic", sans-serif; color: #E8F0FA;
+    background: radial-gradient(800px 420px at 90% -10%, rgba(94,166,246,.35), transparent 62%), linear-gradient(180deg, #0A1C34, #0F2C50);
+    position: relative;
+  }
+  body::before { content: ""; position: absolute; inset: 0; background-image: linear-gradient(rgba(160,196,236,.12) 1px, transparent 1px), linear-gradient(90deg, rgba(160,196,236,.12) 1px, transparent 1px); background-size: 44px 44px; -webkit-mask-image: linear-gradient(180deg, rgba(0,0,0,.6), transparent 90%); }
+  .bar { position: absolute; top: 0; left: 0; right: 0; height: 6px; background: linear-gradient(90deg, #1558B8, #5EA6F6 55%, #F4C430); }
+  .wrap { position: relative; display: grid; grid-template-columns: 560px 1fr; gap: 40px; padding: 64px 56px; height: 100%; align-items: center; }
+  .brand { display: flex; align-items: center; gap: 14px; margin-bottom: 30px; }
+  .brand .wm { font-family: "Space Grotesk", sans-serif; font-weight: 700; font-size: 34px; letter-spacing: -.02em; }
+  .brand .wm b { color: #5EA6F6; }
+  .pill { font-size: 17px; font-weight: 600; padding: 6px 14px; border-radius: 999px; background: rgba(255,255,255,.08); border: 1px solid rgba(169,189,214,.3); color: #A9BDD6; }
+  h1 { font-size: 54px; line-height: 1.22; font-weight: 700; letter-spacing: -.02em; }
+  h1 em { font-style: normal; background: linear-gradient(transparent 62%, rgba(244,196,48,.42) 62%); }
+  .sub { margin-top: 22px; font-size: 21px; color: #A9BDD6; line-height: 1.55; }
+  .chips { margin-top: 28px; display: flex; gap: 10px; flex-wrap: wrap; }
+  .chips span { font-size: 16px; font-weight: 600; padding: 7px 14px; border-radius: 8px; background: rgba(244,196,48,.16); color: #F4C430; }
+  .console { background: #fff; color: #0D2138; border-radius: 16px; overflow: hidden; box-shadow: 0 30px 60px -20px rgba(0,0,0,.6); }
+  .c-head { display: flex; justify-content: space-between; padding: 14px 18px; border-bottom: 1px solid #C9D6E4; font-weight: 600; font-size: 16px; }
+  .c-head i { font-style: normal; font-family: "IBM Plex Mono", monospace; font-size: 14px; color: #1B8549; }
+  .kpis { display: grid; grid-template-columns: repeat(3, 1fr); border-bottom: 1px solid #C9D6E4; }
+  .kpi { padding: 14px 18px; border-right: 1px solid #C9D6E4; }
+  .kpi:last-child { border-right: 0; }
+  .kpi b { display: block; font-family: "IBM Plex Mono", monospace; font-size: 30px; }
+  .kpi span { font-size: 13px; color: #4C6079; }
+  .boxes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; padding: 16px; }
+  .box { border: 1.5px solid #C9D6E4; border-radius: 10px; padding: 10px 12px; background: #F1F5FA; }
+  .box .id { font-family: "IBM Plex Mono", monospace; font-weight: 600; font-size: 15px; display: flex; justify-content: space-between; align-items: center; }
+  .box .id em { font-style: normal; font-family: "IBM Plex Sans KR"; font-size: 11px; padding: 2px 7px; border-radius: 999px; }
+  .box .bar2 { margin-top: 10px; height: 5px; border-radius: 3px; background: #C9D6E4; overflow: hidden; }
+  .box .bar2 i { display: block; height: 100%; }
+  .use { border-color: #1558B8; } .use em { background: #DEEAFA; color: #1558B8; } .use i { background: #1558B8; }
+  .ok em { background: #DAF1E2; color: #1B8549; } .ok i { background: #8AA0B8; }
+  .bad { border-color: #C4352B; background: #FBE2DF; } .bad em { background: #fff; color: #C4352B; } .bad i { background: #C4352B; }
+  .rec { margin: 0 16px 16px; padding: 12px 14px; border-radius: 10px; background: #DEEAFA; font-size: 14px; }
+  .rec b { display: block; margin-bottom: 8px; font-size: 13px; color: #1558B8; font-family: "IBM Plex Mono", monospace; }
+  .row { display: grid; grid-template-columns: 120px 1fr 40px; gap: 10px; align-items: center; margin-top: 6px; }
+  .row .t { height: 6px; border-radius: 3px; background: #fff; overflow: hidden; } .row .t i { display: block; height: 100%; background: #1558B8; }
+  .row span:last-child { font-family: "IBM Plex Mono", monospace; font-size: 13px; text-align: right; }
+</style>
+<div class="bar"></div>
+<div class="wrap">
+  <div>
+    <div class="brand">
+      <svg width="46" height="46" viewBox="0 0 30 30"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2F7FE0"/><stop offset="1" stop-color="#1450A8"/></linearGradient></defs><rect width="30" height="30" rx="9" fill="url(#lg)"/><circle cx="15" cy="15" r="7.5" fill="none" stroke="#fff" stroke-width="2.2"/><path d="M11.6 15.2l2.4 2.4 4.6-5" fill="none" stroke="#F4C430" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="wm">FOD<b>·</b>0</span><span class="pill">공구관제</span>
+    </div>
+    <h1>공구 하나까지,<br><em>화면 한 장</em>에서<br>확인합니다</h1>
+    <p class="sub">공군 부품정비 작업장용 공구·소모품 관리<br>군번 카드 태그 · 부대 내부망 · 이력 기반 공구 추천</p>
+    <div class="chips"><span>미반납 공구 0건</span><span>기록 10초</span><span>만료 자재 차단</span></div>
+  </div>
+  <div class="console">
+    <div class="c-head">부품정비 작업장 · 공구 현황판 <i>● 실시간</i></div>
+    <div class="kpis">
+      <div class="kpi"><b>42</b><span>오늘 불출</span></div>
+      <div class="kpi"><b>3</b><span>사용 중 공구함</span></div>
+      <div class="kpi"><b style="color:#C4352B">1</b><span>미반납 공구</span></div>
+    </div>
+    <div class="boxes">
+      <div class="box bad"><div class="id">A-01<em>미반납</em></div><div class="bar2"><i style="width:95%"></i></div></div>
+      <div class="box use"><div class="id">A-02<em>사용 중</em></div><div class="bar2"><i style="width:70%"></i></div></div>
+      <div class="box ok"><div class="id">E-01<em>보관</em></div><div class="bar2"><i style="width:100%"></i></div></div>
+      <div class="box use"><div class="id">G-01<em>사용 중</em></div><div class="bar2"><i style="width:80%"></i></div></div>
+      <div class="box ok"><div class="id">G-02<em>보관</em></div><div class="bar2"><i style="width:100%"></i></div></div>
+      <div class="box ok"><div class="id">S-01<em>보관</em></div><div class="bar2"><i style="width:100%"></i></div></div>
+    </div>
+    <div class="rec"><b>추천 공구 · WO-2611-0158 유압 작동기</b>
+      <div class="row"><span>3/8" 토크렌치</span><span class="t"><i style="width:96%"></i></span><span>96%</span></div>
+      <div class="row"><span>스냅링 플라이어</span><span class="t"><i style="width:91%"></i></span><span>91%</span></div>
+    </div>
+  </div>
+</div>
+</html>
